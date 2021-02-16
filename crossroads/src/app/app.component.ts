@@ -16,8 +16,13 @@ export class AppComponent {
 
   //calls api to get all commits
   getCommits() {
-    this.service.getCommits().then((res) => {
-      console.log(res)
+    this.service.getCommits().then((res: any) => {
+      console.log(res);
+
+      //loop through api result and assign to commits property
+      res.forEach(commit => {
+        this.commits.push(commit.commit.message);
+      });
     }, (err) => {
       console.log(err)
     })
